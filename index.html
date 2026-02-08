@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LitStore — Художня література онлайн</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+<header class="site-header container">
+  <div class="logo"><span>Lit</span>Store</div>
+  <nav class="nav">
+    <a href="/index.html">Головна</a>
+    <a href="/catalog.html">Каталог</a>
+    <a href="/contacts.html">Контакти</a>
+    <a href="/cart.html">Кошик <span id="cartBadge" class="pill-badge hidden">0</span></a>
+  </nav>
+  <div style="margin-left:auto;display:flex;gap:12px">
+    <input id="searchInput" type="search" placeholder="Пошук…" />
+    <button id="searchBtn">Знайти</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>LitStore — електронний магазин художньої літератури</h1>
+    <p class="muted" style="max-width:720px">
+      Класика, поезія, проза, детективи, фантастика — фільтруй за жанром або автором та знаходь потрібне за секунди.
+    </p>
+    <h2 style="margin-top:18px">Новинки</h2>
+  </div>
+</section>
+
+<main class="container">
+  <div class="grid" id="homeGrid"></div>
+</main>
+
+<footer class="site-footer"><div class="container"><p>© 2025 LitStore</p></div></footer>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

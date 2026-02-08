@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Каталог — LitStore</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+<header class="site-header container">
+  <div class="logo"><span>Lit</span>Store</div>
+  <nav class="nav">
+    <a href="index.html">Головна</a>
+    <a href="catalog.html" class="active">Каталог</a>
+    <a href="contacts.html">Контакти</a>
+    <a href="cart.html">Кошик <span id="cartBadge" class="pill-badge hidden">0</span></a>
+  </nav>
+  <div style="margin-left:auto;display:flex;gap:12px">
+    <input id="catalogSearch" type="search" placeholder="Пошук у каталозі…" />
+    <button id="catalogSearchBtn">Знайти</button>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Каталог</h1>
+
+  <div class="catalog-controls" style="margin-bottom:12px">
+    <div class="field price-box" id="priceBox">
+      <div class="price-head" aria-hidden="true">
+        <span>Ціна</span>
+      </div>
+      <div class="price-body" id="priceBody">
+        <div class="price-inputs">
+          <div class="pi">
+            <span class="pi-label">від</span>
+            <input id="priceMinInput" type="number" inputmode="numeric" min="0" step="1" aria-label="Мінімальна ціна">
+          </div>
+          <div class="pi">
+            <span class="pi-label">до</span>
+            <input id="priceMaxInput" type="number" inputmode="numeric" min="0" step="1" aria-label="Максимальна ціна">
+          </div>
+        </div>
+        <button id="priceApply" class="btn secondary price-apply" type="button">Застосувати</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Сортування:</label>
+      <div class="sort-dd" id="sortDd">
+        <button class="sort-trigger" id="sortTrigger">
+          <span id="sortLabel">Релевантність</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="sort-menu" id="sortMenu">
+          <button data-sort="relevance">Релевантність</button>
+          <button data-sort="newest">Новизна</button>
+          <button data-sort="price-asc">Ціна ↑</button>
+          <button data-sort="price-desc">Ціна ↓</button>
+          <button data-sort="title-uk">Алфавітом</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-row">
+    <div class="pills">
+      <button id="pillGenre" class="pill active">За жанром</button>
+      <button id="pillAuthor" class="pill">За автором</button>
+    </div>
+
+    <div class="chooser-inline" id="chooser">
+      <h3 id="chooserTitle">Оберіть жанр</h3>
+      <div id="options" class="options"></div>
+    </div>
+
+    <div class="reset-wrap">
+      <button id="clearFilters" class="btn secondary">Скинути</button>
+    </div>
+  </div>
+
+  <div class="grid" id="catalogGrid"></div>
+
+  <div class="load-more-wrap">
+      <button id="loadMore" class="btn load-more hidden" type="button">Завантажити ще</button>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container"><p>© 2025 LitStore</p></div></footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

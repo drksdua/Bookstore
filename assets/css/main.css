@@ -1,0 +1,716 @@
+:root{
+  --bg:#f5f5f5;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --brand:#111827;
+  --brand-2:#0b0f19;
+  --pill:#f3f4f6;
+  --line:#e5e7eb;
+  --shadow:0 8px 22px rgba(0,0,0,.10);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:linear-gradient(120deg,#f5f5f5,#fafafa);
+  color:var(--text);
+}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-decoration:none}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ===== HEADER ===== */
+.site-header{display:flex;align-items:center;gap:20px;padding:14px 0}
+.logo{font-weight:900;font-size:24px;color:var(--text)}
+.logo span{color:var(--brand)}
+.nav{display:flex;gap:16px}
+.nav a{padding:6px 10px;border-radius:8px;color:var(--text);font-weight:800}
+.nav a.active{background:#f3f4f6;color:var(--brand)}
+
+/* Пошук у хедері */
+.site-header input[type="search"]{
+  height:38px !important; width:260px !important;
+  padding:0 12px !important; border:1px solid var(--line) !important;
+  border-radius:999px !important; background:#fff !important;
+  box-shadow:var(--shadow) !important; outline:none !important;
+}
+.site-header button,
+.site-header .btn,
+.site-header input[type="button"],
+.site-header input[type="submit"]{
+  height:38px !important; padding:0 16px !important;
+  border-radius:12px !important;
+  background:var(--brand) !important; color:#fff !important;
+  border:1px solid var(--brand-2) !important;
+  box-shadow:var(--shadow) !important; font-weight:800 !important;
+  cursor:pointer !important;
+}
+.site-header button:hover,
+.site-header .btn:hover,
+.site-header input[type="button"]:hover,
+.site-header input[type="submit"]:hover{ background:var(--brand-2) !important; }
+
+/* ===== HERO ===== */
+.hero{padding:24px 0 8px;background:radial-gradient(1200px 300px at 20% 0%,#f3f4f6 0,#fff0 60%)}
+h1,h2,h3{margin:14px 0 10px}
+h1{font-size:36px}
+.muted{color:var(--muted)}
+
+/* ===== GRID / CARDS ===== */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.grid>.card{grid-column:span 3;min-width:0}
+@media (max-width:1024px){ .grid>.card{grid-column:span 4} }
+@media (max-width:720px){ .grid>.card{grid-column:span 6} }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+/* thumb base (переб’ється нижче у FIX-блоці) */
+.thumb{height:180px;background:#f3f4f6;display:flex;align-items:center;justify-content:center}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
+.card .body{padding:12px}
+.card .title{font-weight:900}
+.card .meta{color:var(--muted);font-size:14px;margin-top:2px}
+.card .price{margin-top:8px;font-weight:900}
+
+.btn{
+  background:var(--brand);color:#fff;border:0;border-radius:12px;
+  padding:10px 14px;font-weight:800;cursor:pointer;box-shadow:var(--shadow)
+}
+.btn:hover{background:var(--brand-2)}
+.btn.secondary{background:var(--pill);color:var(--text);border:1px solid var(--line)}
+.btn.secondary:hover{background:#e5e7eb}
+.pill-badge{background:#ff5b5b;color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;font-size:12px}
+.hidden{display:none}
+
+/* ===== CATALOG CONTROLS ===== */
+.catalog-controls{
+  display:flex;gap:24px;align-items:flex-start;
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;box-shadow:var(--shadow)
+}
+.field label{display:block;font-weight:900;margin-bottom:6px}
+
+/* ===== PRICE BOX (inputs instead of range slider) ===== */
+.price-box{ min-width: 280px; }
+.price-head{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 10px;
+  border:0;
+  background:transparent;
+  font-weight:900;
+  cursor:pointer;
+}
+.price-head svg{ transition: transform .15s ease; }
+.price-box.collapsed .price-head svg{ transform: rotate(180deg); }
+
+.price-body{
+  display:block;
+  margin-top:6px;
+}
+.price-box.collapsed .price-body{ display:none; }
+
+.price-inputs{ display:flex; gap:10px; }
+.pi{ flex:1; position:relative; }
+.pi-label{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  font-weight:800;
+  font-size:12px;
+  pointer-events:none;
+}
+.price-box input[type="number"]{
+  width:100%;
+  height:40px;
+  padding:8px 12px 8px 34px; /* місце під 'від/до' */
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  outline:none;
+  font-weight:800;
+  color:var(--text);
+}
+.price-apply{
+  margin-top:10px;
+  width:100%;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* sort dropdown */
+.sort-dd{ position:relative; }
+.sort-trigger{
+  display:inline-flex; align-items:center; gap:8px;
+  height:40px; padding:0 14px; border-radius:999px;
+  background:#f3f4f6; color:#111827; border:1px solid #f3f4f6; font-weight:800;
+  box-shadow:var(--shadow); cursor:pointer;
+}
+.sort-dd.open .sort-trigger,
+.sort-trigger:hover{ background:#f3f4f6; border-color:#e5e7eb; }
+.sort-menu{
+  position:absolute; top:110%; left:0; min-width:220px; background:#fff; border:1px solid #f3f4f6;
+  border-radius:12px; box-shadow:0 10px 24px rgba(20,40,80,.12); padding:6px; display:none; z-index:40;
+}
+.sort-dd.open .sort-menu{ display:block; }
+.sort-menu button{
+  display:block; width:100%; text-align:left; padding:10px 12px; border-radius:8px; border:0; background:transparent;
+  font-weight:700; color:#111827; cursor:pointer;
+}
+.sort-menu button:hover{ background:#f3f4f6; }
+
+/* ===== FILTERS ROW ===== */
+.filters-row{
+  display:flex;
+  gap:16px;               /* пробіл між pills / chooser / reset */
+  align-items:flex-start; /* щоб не “плавало” */
+  flex-wrap:wrap;
+  margin-bottom:16px;     /* ВАЖЛИВО: відступ до сітки карток (щоб блоки не “зливались”) */
+}
+.filters-row > *{ min-width:0; } /* важливо для flex */
+
+.filters-row .pills{
+  display:flex;
+  gap:12px;               /* пробіл між "За жанром" і "За автором" */
+}
+
+/* Овальні кнопки-пігулки */
+.filters-row .pills .pill{
+  background:#f3f4f6;
+  color:#111827;
+  font-weight:800;
+  border:1px solid #e5e7eb;
+  border-radius:9999px;
+  box-shadow:var(--shadow);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 16px;
+  line-height:1;
+  font-size:13px;
+  cursor:pointer;
+  width:auto;
+  height:auto;
+  min-height:32px;
+}
+.filters-row .pills .pill.active{
+  background:var(--brand);
+  color:#fff;
+  border-color:var(--brand);
+}
+.filters-row .pills .pill:hover{ filter:brightness(0.98); }
+
+/* Reset справа */
+.filters-row .reset-wrap{
+  margin-left:auto;
+  padding-left:16px;
+  max-width: 100%;
+}
+.filters-row .reset-wrap .btn{ white-space:nowrap; }
+
+/* на вузьких екранах "Скинути" переноситься вниз */
+@media (max-width: 900px){
+  .filters-row .reset-wrap{
+    width:100%;
+    margin-left:0;
+    padding-left:0;
+    display:flex;
+    justify-content:flex-start;
+  }
+}
+
+/* ===== CHOOSER ===== */
+.chooser-inline{
+  flex:1;
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);padding:12px;
+
+  --rows:2;
+  --chip-h:36px;
+  --row-gap:10px;
+  --options-h: calc(var(--rows) * var(--chip-h) + (var(--rows) - 1) * var(--row-gap));
+}
+.chooser-inline h3{margin:0 0 10px}
+.chooser-inline .options{
+  display:flex;flex-wrap:wrap;gap:var(--row-gap);
+  max-height:var(--options-h);
+  min-height:var(--options-h);
+  overflow-y:auto;padding-right:8px;
+
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+.chooser-inline .options::-webkit-scrollbar{ width:10px; }
+.chooser-inline .options::-webkit-scrollbar-track{ background:transparent; }
+.chooser-inline .options::-webkit-scrollbar-thumb{
+  background:#d1d5db;
+  border-radius:999px;
+  border:2px solid transparent;
+  background-clip:content-box;
+}
+.chooser-inline .options::-webkit-scrollbar-thumb:hover{ background:#cbd5e1; }
+
+.option{
+  background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;
+  padding:9px 14px;font-weight:800;color:#111827;cursor:pointer;
+  line-height:1;
+}
+.option .badge{background:var(--brand);color:#fff;border-radius:999px;padding:2px 8px;margin-left:8px;font-size:12px}
+.option.selected, .option:hover{background:#f3f4f6;border-color:#e5e7eb}
+
+/* ===== PRICE RANGE ===== */
+.catalog-controls .price-range .range-wrap{ position:relative; height:36px; display:flex; align-items:center; width:360px; max-width:100%; }
+.catalog-controls .price-range .range-base{ position:absolute; top:50%; transform:translateY(-50%); left:0; right:0; height:4px; border-radius:999px; background:#f3f4f6; z-index:0 !important; pointer-events:none; }
+.catalog-controls .price-range .range-progress{ position:absolute; top:50%; transform:translateY(-50%); left:0; right:0; height:4px; border-radius:999px; background:var(--brand); z-index:1 !important; pointer-events:none; }
+.catalog-controls .price-range input[type="range"]{ position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); width:100%; height:4px; background:transparent !important; -webkit-appearance:none; appearance:none; z-index:3 !important; pointer-events:none; }
+.catalog-controls .price-range input[type="range"].on-top{ z-index:4 !important; }
+.catalog-controls .price-range input[type="range"]::-webkit-slider-runnable-track{ height:4px; background:transparent !important; }
+.catalog-controls .price-range input[type="range"]::-moz-range-track{ height:4px; background:transparent !important; }
+.catalog-controls .price-range input[type="range"]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%; background:var(--brand); border:2px solid #fff; box-shadow:var(--shadow); margin-top:-7px; pointer-events:auto; cursor:pointer; }
+.catalog-controls .price-range input[type="range"]::-moz-range-thumb{ width:18px; height:18px; border-radius:50%; background:var(--brand); border:2px solid #fff; box-shadow:var(--shadow); pointer-events:auto; cursor:pointer; }
+.range-values{display:flex;align-items:center;gap:6px;margin-top:6px;font-weight:900}
+
+/* ===== PRODUCT ===== */
+.product{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.product .preview{
+  background:#f3f4f6;border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center
+}
+.product .preview img{max-width:100%;height:auto;border-radius:12px}
+
+/* ===== DESCRIPTIONS ===== */
+.desc-snippet{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.book-desc{
+  color:var(--text);
+  line-height:1.6;
+  white-space:normal;
+}
+.book-desc br{display:block;content:"";margin-top:6px;}
+
+/* ===== CART TABLE ===== */
+.cart-table th,.cart-table td{font-size:14px}
+.cart-table input.qty{border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.cart-table button.qty-dec,.cart-table button.qty-inc,
+.cart-table button.remove{
+  background:#f3f4f6;border:1px solid #f3f4f6;border-radius:8px;
+  padding:4px 8px;cursor:pointer;font-weight:900;color:#111827
+}
+.cart-table button.remove{padding:4px 10px}
+
+/* ===== ФОРМИ ===== */
+.form .field{ margin-bottom:12px; }
+.form .field label{ font-weight:900; display:block; margin-bottom:6px; }
+
+.form .field input[type="text"],
+.form .field input[type="email"],
+.form .field input[type="tel"],
+.form .field input[type="number"],
+.form .field select,
+.form .field textarea,
+#checkoutView input[type="text"],
+#checkoutView input[type="email"],
+#checkoutView input[type="tel"],
+#checkoutView input[type="number"],
+#checkoutView select,
+#checkoutView textarea{
+  width:100% !important;
+  height:40px !important;
+  padding:8px 12px !important;
+  border:1px solid var(--line) !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-shadow:var(--shadow) !important;
+  outline:none !important;
+  transition:border-color .15s ease, box-shadow .15s ease !important;
+  color:var(--text) !important;
+}
+.form .field textarea,
+#checkoutView textarea{ height:auto !important; min-height:100px !important; resize:vertical !important; }
+
+.form .field input:focus,
+.form .field select:focus,
+.form .field textarea:focus,
+#checkoutView input:focus,
+#checkoutView select:focus,
+#checkoutView textarea:focus{
+  border-color:#e5e7eb !important;
+  box-shadow:0 0 0 3px rgba(47,93,184,.12), var(--shadow) !important;
+}
+
+/* ===== FOOTER ===== */
+.site-footer{margin-top:32px;padding:18px 0;border-top:1px solid var(--line);color:var(--muted)}
+
+/* ===== LOAD MORE ===== */
+.load-more-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  padding:20px 0 28px;
+  clear:both;
+}
+#catalogGrid{ margin-top: 8px; margin-bottom: 8px; }
+.btn.load-more{
+  min-width: 220px;
+  border-radius: 999px;
+}
+
+/* Стабілізація вертикального скролу сторінки */
+html{ scrollbar-gutter: stable; }
+@supports not (scrollbar-gutter: stable){
+  html{ overflow-y: scroll; }
+}
+
+/* ===== FINAL FIX: обкладинки як книжки + рівні картки ===== */
+.card{
+  display:flex;
+  flex-direction:column;
+}
+.card .body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:12px;
+}
+.thumb{
+  height:240px;
+  background:#f3f4f6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;     /* НЕ ріже обкладинку */
+  object-position:center;
+  padding:10px;
+  display:block;
+}
+.card .price{
+  margin-top:auto;
+  font-weight:900;
+}
+
+/* Кнопки в картці: рівні, одна висота */
+.card .actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+}
+.card .actions .btn{
+  flex:1;
+  height:42px;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+@media (max-width:720px){
+  .thumb{ height:220px; }
+  .thumb img{ padding:8px; }
+}
+/* ===== FIX: рівні картки в каталозі (стабільна висота) ===== */
+
+/* картка як колонка */
+.grid .card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+/* обкладинка — стабільна зона */
+.grid .card .thumb{
+  height:220px;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+.grid .card .thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;   /* не розтягує дивно */
+}
+
+/* body розтягується, але має передбачувану геометрію */
+.grid .card .body{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:12px;
+}
+
+/* заголовок максимум у 2 рядки */
+.grid .card .title{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height:44px; /* стабільно під 2 рядки */
+}
+
+/* meta максимум у 2 рядки */
+.grid .card .meta{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height:36px;
+}
+
+/* ціна завжди внизу body, навіть якщо meta/title різні */
+.grid .card .price{
+  margin-top:auto;
+  font-weight:900;
+}
+
+/* кнопки завжди однакові і внизу */
+.grid .card .actions{
+  padding:12px;
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+  justify-content:space-between;
+}
+
+/* обидві кнопки однакової висоти/ширини, без переносу */
+.grid .card .actions .btn,
+.grid .card .actions a.btn{
+  flex:1;
+  text-align:center;
+  white-space:nowrap;
+  padding:12px 14px;
+}
+
+/* щоб "У кошик" не переносився на 2 рядки */
+.grid .card .actions .add-to-cart{
+  min-width:0;
+}
+
+/* на мобілці — трохи нижча обкладинка */
+@media (max-width:720px){
+  .grid .card .thumb{ height:200px; }
+  .grid .card .title{ min-height:40px; }
+  .grid .card .meta{ min-height:32px; }
+}
+/* ===== FIX: кнопки завжди внизу картки + однаковий розмір ===== */
+
+.grid .card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.grid .card .body{
+  flex:1;                 /* розтягується і “штовхає” actions вниз */
+}
+
+/* блок кнопок */
+.grid .card .actions{
+  margin-top:auto;        /* прибиває до низу */
+  padding:12px;
+  display:flex;
+  gap:10px;
+}
+
+/* однакова висота + центрування тексту */
+.grid .card .actions .btn,
+.grid .card .actions a.btn{
+  flex:1;
+  height:44px;            /* однаково у всіх */
+  display:inline-flex;    /* центруємо */
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;     /* "У кошик" не ламається */
+  padding:0 14px;         /* щоб висоту не ламало paddingом */
+  line-height:1;
+}
+
+/* ===== FIX v2: card-link як flex, однакова висота контенту, кнопки завжди знизу ===== */
+.card .card-link{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+.card .card-link .body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+/* фіксована (візуально) висота заголовку/мети, щоб дно картки було рівне */
+.card .title{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:44px; /* ~2 рядки */
+}
+.card .meta{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:34px; /* ~2 рядки */
+}
+
+/* ===== FIX v2: card-link як flex, однакова висота контенту, кнопки завжди знизу ===== */
+.card .card-link{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+.card .card-link .body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+
+/* Заголовок/мета: обрізання до 2 рядків + мін-висота для вирівнювання */
+.card .title{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  line-height:1.2;
+  min-height:2.4em; /* ~2 рядки */
+}
+.card .meta{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  line-height:1.25;
+  min-height:2.5em; /* ~2 рядки */
+}
+
+/* Ціна завжди піджимається вниз у body */
+.card .price{ margin-top:auto; }
+
+/* Кнопки внизу: однакова висота і центрований текст */
+.card .actions{
+  margin-top:auto;
+}
+.card .actions .btn,
+.card .actions a.btn,
+.card .actions button.btn{
+  height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+/* ===== FIX v2: card-link як flex, однакова висота контенту, кнопки завжди знизу ===== */
+.card .card-link{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+.card .card-link .body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+
+/* Заголовок/мета: до 2 рядків + мін-висота для вирівнювання */
+.card .title{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:44px; /* ~2 рядки */
+}
+.card .meta{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:34px; /* ~2 рядки */
+}
+
+/* Ціна завжди притискається вниз контентного блоку */
+.card .price{ margin-top:auto; }
+
+/* ===== FIX v2: card-link як flex, однакова висота контенту, кнопки завжди знизу ===== */
+.card .card-link{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+.card .card-link .body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+
+/* Заголовок/мета: до 2 рядків + мін-висота для вирівнювання */
+.card .title{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:44px;
+}
+.card .meta{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-height:34px;
+}
+
+/* Ціна завжди "приклеєна" донизу блоку body */
+.card .price{ margin-top:auto; }
+
+/* Кнопки: однакова висота і центрований текст */
+.card .actions .btn,
+.card .actions button,
+.card .actions a.btn{
+  height:44px;
+  padding:0 14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+}

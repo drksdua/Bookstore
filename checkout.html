@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Оплата — LitStore</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+<header class="site-header container">
+  <div class="logo"><span>Lit</span>Store</div>
+  <nav class="nav">
+    <a href="/index.html">Головна</a>
+    <a href="/catalog.html">Каталог</a>
+    <a href="/contacts.html">Контакти</a>
+    <a href="/cart.html">Кошик <span id="cartBadge" class="pill-badge hidden">0</span></a>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Оплата</h1>
+
+  <div id="checkoutView">
+    <div class="grid" style="grid-template-columns:2fr 1fr; gap:20px; padding:12px 0">
+      <div class="card"><div class="body">
+        <div class="title">Дані покупця</div>
+
+        <!-- важливо: form має клас .form, а кожне поле — .field -->
+        <form id="checkoutForm" class="form">
+          <div class="field"><label>ПІБ</label><input type="text" name="name" required></div>
+          <div class="field"><label>Email</label><input type="email" name="email" required></div>
+          <div class="field"><label>Телефон</label><input type="tel" name="phone" required></div>
+          <div class="field"><label>Доставка</label>
+            <select name="delivery" required>
+              <option value="nova">Нова Пошта (відділення)</option>
+              <option value="courier">Кур'єр по місту</option>
+              <option value="pickup">Самовивіз</option>
+            </select>
+          </div>
+          <div class="field"><label>Адреса / Відділення</label><input type="text" name="address" required></div>
+          <div class="field"><label>Оплата</label>
+            <div class="radios">
+              <label><input type="radio" name="pay" value="card" checked> Банківська картка</label>
+              <label><input type="radio" name="pay" value="cod"> Післяплата</label>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:8px">
+            <a class="btn secondary" href="/cart.html">Назад</a>
+            <button type="submit" class="btn">Оплатити</button>
+          </div>
+        </form>
+      </div></div>
+
+      <div class="card"><div class="body">
+        <div class="title">Ваше замовлення</div>
+        <div id="orderList" style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+          <!-- Список позицій підставляє JS -->
+        </div>
+        <div id="orderTotal" style="margin-top:10px;font-weight:900">Сума: —</div>
+      </div></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container"><p>© 2025 LitStore</p></div></footer>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>
